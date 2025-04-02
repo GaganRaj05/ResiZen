@@ -1,0 +1,98 @@
+body,*{
+    margin: 0px;
+    font-family:Arial, Helvetica, sans-serif;
+}
+
+.content-container {
+    height: calc(100vh - 35px);
+    width: 100%;
+    margin-top: 5px;
+    padding: 20px;
+}
+.sub-content-container {
+    height: 50px;
+    width: 1000px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    margin-left: 250px;
+    background-color: white;
+    border-radius: 25px;
+    padding: 10px;
+    
+    
+}
+.sub-content-container button {
+    height: 40px;
+   width: 100px;
+
+    background-color: white;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    font-size: small;
+    border: 0px;
+    cursor: pointer;
+    border-radius: 8px;
+}
+.sub-content-container button:hover{
+    background-color:#f0f0f0;
+}
+.sub-button.active {
+    background-color: black;
+    color: white;
+}
+.sub-button.active:hover {
+    background-color: black;
+    color: white;
+}
+.content-display-container {
+    display: grid;
+    grid-template-columns: repeat(4, minmax(250px, 1fr));
+    gap: 20px;
+    padding: 20px;
+    width: 100%;
+    height: auto;
+}
+
+.house-card {
+    border: 0px solid #ddd;
+    border-radius: 10px;
+    overflow: hidden;
+    text-align: center;
+    background: white;
+    height: 400px;
+    width: 350px;
+    padding: 15px
+}
+
+.house-image {
+    width: 100%;
+    height: 300px;
+    object-fit: cover;
+    border-radius: 5px;
+}
+
+.house-title {
+    font-size: 18px;
+    font-weight: bold;
+}
+
+.house-location, .house-price {
+    font-size: 15px;
+    color: black;
+    font-weight: bold;
+    margin-top: 5px;
+}
+.house-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+    align-items: start;
+    justify-content: center;
+}
+.house-card:hover {
+    background-color: #f0f0f0;
+    cursor: pointer;
+}

@@ -16,6 +16,14 @@ const landSchema = new mongoose.Schema({
     description:{
         type:String,
         required:true
+    },
+    district: {
+        type:String,
+        required:true
+    },
+    state:{
+        type:String,
+        required:true
     }
 });
 

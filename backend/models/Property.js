@@ -17,12 +17,24 @@ const propertySchema = new mongoose.Schema({
         type:String,
         required:true,
     },
-    address: {
+    complete_address: {
         type:String,
         required:true
     },
     image:{
-        type:["String"],
+        type:[String],
+        required:true
+    },
+    propertyType:{
+        type:String,
+        required:true,
+    },
+    district: {
+        type:String,
+        required:true,
+    },
+    state:{
+        type:String,
         required:true
     }
 })
