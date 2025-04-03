@@ -2,6 +2,7 @@ import Home from "./pages/Home"
 import {createBrowserRouter,RouterProvider} from "react-router-dom";
 import Property_Description from "./pages/PropertyDescriptionPage";
 import Land_DescriptionPage from "./pages/LandDescription";
+import AdminPage from "./pages/admin";
 const router = createBrowserRouter([
   {
     path:"/",
@@ -14,6 +15,10 @@ const router = createBrowserRouter([
   {
     path:"/about-land",
     element:<Land_DescriptionPage/>
+  },
+  {
+    path:"/admin-dashboard",
+    element:<AdminPage/>
   }
 ])
 function App() {

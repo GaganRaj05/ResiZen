@@ -5,12 +5,13 @@ import { FaUser } from "react-icons/fa";
 import { useState } from "react";
 import Login from "./login";
 import SignUp from "./signup";
-
+import { Logout } from "../services/auth";
 function Navbar({setContent}) {
   const [isOpen, setIsOpen] = useState(false);
   const [selectedOption, setSelectedOption] = useState(null);
   const [isLoginOpen,setIsLoginOpen] = useState(false)
   const [isSignInOpen,setIsSignInOpen] = useState(false);
+  const [isLoggedIn, setIsLoggedIn] = useState(false);
 
   const toggleDropdown = () => {
     setIsOpen(!isOpen);
@@ -20,6 +21,15 @@ function Navbar({setContent}) {
     setSelectedOption(option);
     setIsOpen(false);
   };
+  const handleLogoutClick = async() => {
+    const response = await Logout();
+    if(response.error) {
+      alert(response.error === "Failed to fetch" ? "Some error occured please try again later":response.error);
+      return;
+    }
+    alert("Logout successfull");
+    setIsLoggedIn(false);
+  }
 
   return (
     <div className="nav-bar-container">
@@ -43,15 +53,20 @@ function Navbar({setContent}) {
             </div>
             {isOpen && (
               <ul className="select-options">
+                {!isLoggedIn &&  
                 <li onClick={() => {handleOptionClick("Login");setIsLoginOpen(true);setIsSignInOpen(false)}}>Login</li>
+                }
+                {isLoggedIn && 
+                  <li className="lgt-btn" onClick={()=>{handleOptionClick("Logout");handleLogoutClick()}}>Logout</li>
+                }
                 <li onClick={() => {handleOptionClick("Sign-up");setIsLoginOpen(false);setIsSignInOpen(true)}}>Sign-up</li>
               </ul>
             )}
           </li>
         </ul>
       </nav>
-      {isLoginOpen && <Login onClose={()=>setIsLoginOpen(false)}/>}
-      {isSignInOpen && <SignUp onClose={()=>setIsSignInOpen(false)}/>}
+      {isLoginOpen && <Login onClose={()=>setIsLoginOpen(false)} onLogin={()=>setIsLoggedIn(true)} onRegisterClick={()=>{setIsLoginOpen(false);setIsSignInOpen(true)}}/>}
+      {isSignInOpen && <SignUp onClose={()=>setIsSignInOpen(false)} onLoginClick={()=>{setIsSignInOpen(false);setIsLoginOpen(true)}}/>}
     </div>
   );
 }

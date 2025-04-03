@@ -28,6 +28,7 @@ async function getLands(req,res) {
             ...land._doc,
             image:land.image.map(img=>`${req.protocol}://${req.get("host")}/uploads/${img}`)
         }));
+        console.log(formattedResult)
         return res.status(201).json(formattedResult);
     }
     catch(err) {

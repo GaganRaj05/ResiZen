@@ -1,0 +1,119 @@
+.admin-page-container {
+    display: flex;
+}
+.admin-control-container {
+    width: calc(100vw - 270px);
+    height: 100vh;
+    padding: 50px;
+}
+
+.dashboard_instructions {
+    width: 600px;
+    height: 250px;
+    margin-top: 30px;
+    padding:10px;
+    border-radius: 8px;
+    border:1px solid #373b3e;
+}
+#instructions-footer {
+    margin-top: 50px;
+}
+.admin-user-controls_container {
+    border-radius: 8px;
+    border: 1px solid #373b3e;
+    width: 600px;
+    margin-top: 50px;
+    height: 500px;
+}
+.search-bar-container {
+    width: 100%;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    border-bottom: 1px solid #373b3e;
+}
+.search-bar-container  input {
+    padding: 5px;
+    height: 35px;
+}
+.search-bar-container  button {
+    background-color: #0d1114;
+    color: white;
+    width: 100px;
+    height: 35px;
+    border: 0;
+
+}
+.user-btns {
+    margin-left: 100px;
+    height: 35x;
+    border-radius: 8px;
+    color: white;
+    width: 100px;
+    background-color: #0d1114;
+}
+.user-pic {
+    width: 30px;
+    height: 30px;
+}
+.user-pic img {
+    object-fit: cover;
+    height: 30px;
+    width: 30px;
+    border-radius: 25px;
+    border: 3px solid black;
+}
+.User-cards {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    justify-content: space-evenly;
+    align-items: center;
+    border-bottom: 1px solid #373b3e;
+    margin-bottom: 5px;
+}
+.user-display {
+    max-height: 450px;
+    min-height: 450px;
+    overflow-y: auto;
+}.User-cards {
+    width: 100%;
+    height: 70px;
+    display: flex;
+    align-items: center;
+    border-bottom: 1px solid #373b3e;
+    margin-bottom: 5px;
+    padding: 10px; 
+    gap: 15px;
+}
+
+.user-pic {
+    width: 40px;
+    height: 40px;
+    flex-shrink: 0; 
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.user-pic img {
+    object-fit: cover;
+    width: 100%;
+    height: 100%;
+    border-radius: 50%;
+    border: 2px solid black;
+}
+
+.user-info {
+    flex-grow: 1;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.dlt-user-btns {
+    flex-shrink: 0; 
+    padding: 5px 10px;
+}
+

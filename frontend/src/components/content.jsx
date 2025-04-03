@@ -22,15 +22,13 @@ function Content() {
   const navigate = useNavigate();
   useEffect(() => {
     async function getHouses() {
-      try {
-        const response = await Get_All_Houses();
-        console.log(response);
-        setIsLoading(false);
-        setHouses(response);
-      } catch (err) {
-        console.log(err);
-        setError("Some error occurred, please try again later.");
+      const response = await Get_All_Houses();
+      setIsLoading(false);
+      if(response.error) {
+        setError(response.error ==="Failed to fetch"?"Some error occured please try again later":response.error);
+        return;
       }
+      setHouses(response);
     }
     getHouses();
   }, []);

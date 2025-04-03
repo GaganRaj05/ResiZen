@@ -5,10 +5,9 @@ import Lands from "../components/lands";
 import Content from "../components/content";
 function Home() {
     const [contentType,setContentType] = useState("Houses");
-
     return(
         <div>
-            <Navbar setContent = {(type)=>setContentType(type)}/>
+            <Navbar setContent= {(type)=>setContentType(type)} />
             {contentType==="Houses" && <Content/>}
             {contentType==="Lands" && <Lands/>}
         </div>

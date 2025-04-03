@@ -1,10 +1,29 @@
 const User = require("../models/User");
 const bcryptjs = require('bcryptjs');
 const jsonwebtoken = require('jsonwebtoken');
-
+const Admin = require("../models/Admin");
 async function handleLogin(req,res) {
     try {
         const {email, password} = req.body;
+        const admin = await Admin.findOne({email});
+        if(admin) {
+            const result = await bcryptjs.compare(password,admin.password);
+            if(result) {
+                const token = jsonwebtoken.sign({id:admin._id},process.env.JWT_SECRET,{expiresIn:"1h"});
+                res.cookie("jwt",token,{
+                    httpOnly:false,
+                    secure:false,
+                    sameSite:"lax",
+                    path:"/"
+                });
+        
+                return res.status(201).json("Logged in Successfully as admin");
+            }
+            else {
+                return res.status(401).json("Incorrect password entered");
+            }
+        }
+
         const user = await User.findOne({email:email});
         if(!user) return res.status(401).json("Email not found, please check your email address");
 
@@ -70,4 +89,5 @@ async function handleLogout(req,res) {
         return res.status(501).json("Some error occured please try again later");
     }
 }
+
 module.exports = {handleLogin,handleRegistration, handleLogout};
