@@ -2,7 +2,9 @@ const jsonwebtoken = require('jsonwebtoken');
 async function checkAuth(req,res,next) {
     try {
         const token = req.cookies.jwt;
+        
         const result = jsonwebtoken.verify(token, process.env.JWT_SECRET);
+        req.user_id = result.id;
         if(result) next()
     }
     catch (err) {

@@ -1,4 +1,6 @@
 const Property = require("../models/Property");
+const sendMail = require("../config/sendMail");
+const User = require("../models/User");
 async function handleGettingProperties(req, res) {
     try {
         const result = await Property.find();
@@ -76,16 +78,30 @@ async function getSpecificProperty(req, res) {
         const property_id = req.params.property_id;
         const result = await Property.findOne({_id:property_id});
 
-        const formattedResult = await result.map(property=> ({
-            ...property._doc,
-            image:property.image.map(img=>`${req.protocol}://${req.get("host")}/uploads/${img}`)
-        }));
-        return res.status(201).json(formattedResult);
+        const formattedResult = {
+            ...result._doc,
+            image: result.image.map(img => `${req.protocol}://${req.get("host")}/uploads/${img}`)
+        };
+                return res.status(201).json(formattedResult);
     }   
     catch(err) {
-        console.log(err.message);
+        console.log(err);
         return res.status(501).json("Some error occured please try again later");
     }
 }
+async function submitInterest(req,res) {
+    try {
+        const user_id = req.user_id;
+        const user = await User.findOne({_id:user_id});
+        const property_name= req.params.id;
 
-module.exports = {handleGettingProperties,handlePostingProperties,handleDeletingProperties,handleParticularProperties,getSpecificProperty};
+        await sendMail("gaganraj.dev05@gmail.com",user.name,user.phone,property_name);
+        return res.status(201).json("Mail sent successfully");
+
+    }
+    catch(err) {
+        return res.status(201).json("Some error occured please try again later");
+    }
+}
+
+module.exports = {handleGettingProperties,handlePostingProperties,handleDeletingProperties,handleParticularProperties,getSpecificProperty,submitInterest};

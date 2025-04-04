@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 import Slider from "react-slick"
-import Get_Lands from "../services/getLands";
+import {Get_Lands} from "../services/getLands";
 import "../assets/styles/content.css";
 import { DeleteLand } from "../services/admin";
 function Delete_Land() {

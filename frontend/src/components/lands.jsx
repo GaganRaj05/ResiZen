@@ -1,5 +1,5 @@
 import { useState, useEffect } from "react";
-import Get_Lands from "../services/getLands";
+import {Get_Lands} from "../services/getLands";
 import "slick-carousel/slick/slick.css";
 import "slick-carousel/slick/slick-theme.css";
 import Slider from "react-slick";

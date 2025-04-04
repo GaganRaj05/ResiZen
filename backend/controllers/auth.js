@@ -11,7 +11,7 @@ async function handleLogin(req,res) {
             if(result) {
                 const token = jsonwebtoken.sign({id:admin._id},process.env.JWT_SECRET,{expiresIn:"1h"});
                 res.cookie("jwt",token,{
-                    httpOnly:false,
+                    httpOnly:true,
                     secure:false,
                     sameSite:"lax",
                     path:"/"
@@ -32,7 +32,7 @@ async function handleLogin(req,res) {
 
         const token = jsonwebtoken.sign({id:user._id},process.env.JWT_SECRET,{expiresIn:"1h"});
         res.cookie("jwt",token,{
-            httpOnly:false,
+            httpOnly:true,
             secure:false,
             sameSite:"lax",
             path:"/"

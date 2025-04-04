@@ -27,4 +27,20 @@ async function Get_Particular_House(propertyType) {
         return {error:err.message};
     }
 }
-export  {Get_All_Houses,Get_Particular_House};
+
+async function get_house_byId(house_id) {
+    try {
+        const response = await fetch(`${BACKEND_URL}/features/property/${house_id}`, {
+            method:"GET",
+            credentials:'include',
+        });
+        const data = await response.json();
+        if(!response.ok) return {error:data};
+        return data;
+    }
+    catch(err) {
+        console.log(err.message);
+        return {error:err.message};
+    }
+}
+export  {Get_All_Houses,Get_Particular_House,get_house_byId};

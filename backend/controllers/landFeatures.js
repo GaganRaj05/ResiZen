@@ -41,10 +41,10 @@ async function getSpecificLand(req,res) {
     try {
         const land_id = req.params.land_id;
         const result = await Land.findOne({_id:land_id});
-        const formattedResult = await result.map(land=>({
-            ...land._doc,
-            image:land.image.map(img=>`${req.protocol}://${req.get('host')}/uploads/{img}`)
-        }));
+        const formattedResult = {
+            ...result._doc,
+            image:result.image.map(img=>`${req.protocol}://${req.get("host")}/uploads/${img}`)
+        }
         return res.status(201).json(formattedResult);
     }
     catch(err) {
